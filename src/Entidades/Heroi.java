@@ -11,12 +11,31 @@ public abstract class Heroi extends Entidade {
     private Arma arma;
     private ArrayList<PocaoHP> pocoes;
 
-    public Heroi(String nome, int HP, int forca, int nivel, int ouro, Arma arma) {
+    public Heroi(String nome, int HP, int forca, int nivel, int ouro, Arma arma, ArrayList<PocaoHP> pocoes) {
         super(nome, HP, forca);
         this.nivel = nivel;
         this.ouro = ouro;
         this.arma = arma;
-        this.pocoes = new ArrayList<PocaoHP>();
+        this.pocoes = pocoes;
+    }
+
+    public Heroi() {
+        super();
+    }
+
+
+    public void mostrarDetalhes() {
+        System.out.println("Nome: " +getNome());
+        System.out.println("Nível: " +this.nivel);
+        System.out.println("Vida: " +getHP());
+        System.out.println("Força: " +getForca());
+        System.out.println("Ouro: " +this.ouro);
+        System.out.println("Arma: " +arma.getNome());
+    }
+
+    public void adicionarPocaoHP(PocaoHP pocaoHP){
+        this.pocoes.add(pocaoHP);
+        System.out.println("Poção adicionada ao inventário: " +pocaoHP.getNome());
     }
 
     public int getNivel() {

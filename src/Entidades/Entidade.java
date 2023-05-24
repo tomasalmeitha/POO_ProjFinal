@@ -11,5 +11,36 @@ public abstract class Entidade {
         this.forca = forca;
     }
 
-    public abstract void mostrarDetalhes();
+    public Entidade() {
+
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getForca() {
+        return forca;
+    }
+
+    public void setForca(int forca) {
+        this.forca = forca;
+    }
+
+    public void mostrarDetalhes(){
+
+    }
+
 }
