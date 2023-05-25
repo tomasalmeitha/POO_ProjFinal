@@ -9,13 +9,20 @@ import java.util.ArrayList;
 public class Vendedor {
     private ArrayList<ItemHeroi> itens;
 
-    public Vendedor(ArrayList<ItemHeroi> itens) {
+    public Vendedor() {
         this.itens = new ArrayList<>();
     }
 
-    public void imprimirInventario() {
+    public void imprimirInventario(ArrayList<ItemHeroi> itens) {
         for (ItemHeroi item : itens) {
-            item.mostrarDetalhes();
+            if (item instanceof Arma) {
+                item.mostrarDetalhes();
+                System.out.println();
+            }
+            if (item instanceof PocaoHP){
+                item.mostrarDetalhes();
+                System.out.println();
+            }
         }
     }
 

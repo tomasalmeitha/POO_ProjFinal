@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Cavaleiro extends Heroi {
 
     public Cavaleiro(String nome, int HP, int forca, int nivel, int ouro, Arma arma, ArrayList<PocaoHP> pocoes) {
-        super(nome, HP, forca, nivel, ouro, arma, pocoes);
+        super(nome, HP, forca, nivel, ouro, arma);
     }
 
     public Cavaleiro() {
@@ -18,23 +18,28 @@ public class Cavaleiro extends Heroi {
     public void atacar(NPC npc) {
         super.atacar(npc);
 
+
         int danoHeroi = getForca() + getArma().getAtaque();
         int danoNPC = npc.getForca();
 
-        //NPC ataca primeiro
-        this.setHP(this.getHP() - danoNPC);
 
-        if (this.getHP() <= 0){
-            System.out.println("Cavaleiro foi derrotado pelo inimigo " +npc.getNome());
+        while (npc.getHP() > 0 && this.getHP() > 0) {
+
+            //NPC ataca primeiro
+            this.setHP(this.getHP() - danoNPC);
+
+            if (this.getHP() <= 0) {
+                System.out.println("Cavaleiro foi derrotado pelo inimigo " + npc.getNome());
+            }
+
+            //Cavaleiro ataca de seguida
+            npc.setHP(npc.getHP() - danoHeroi);
+
+            if (npc.getHP() <= 0) {
+                System.out.println("Cavaleiro derrotou o inimigo " + npc.getNome());
+
+            }
         }
-
-        //Cavaleiro ataca de seguida
-        npc.setHP(npc.getHP() - danoHeroi);
-
-        if(npc.getHP() <= 0){
-            System.out.println("Cavaleiro derrotou o inimigo " +npc.getNome());
-        }
-
     }
 
     @Override

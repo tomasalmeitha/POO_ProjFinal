@@ -14,7 +14,7 @@ public class Jogo {
     }
     boolean valid = true;
 
-    public static void labirinto() {
+    public static void labirinto(){
         Scanner input = new Scanner(System.in);
         boolean estaVivo = true;
         Heroi heroi;
@@ -184,8 +184,8 @@ public class Jogo {
         itens.add(lancaRamses);
 
 
-        Vendedor vendedor = new Vendedor(itens);
-        vendedor.imprimirInventario();
+        Vendedor vendedor = new Vendedor();
+//        vendedor.imprimirInventario();
 
         /*********************************************************************************************************************/
 
@@ -201,24 +201,196 @@ public class Jogo {
         System.out.println();
         System.out.println("Boa sorte e que Zeus te acompanhe!");
 
-    //Inicio
+    //Inicio - "Sala de tesouro"
         System.out.println("Existe uma arca perto da escadaria da primeira casa do Zodiaco, desejas abrir?");
         System.out.println("(1) Sim, (2) Não");
         int escolha = input.nextInt();
+        PocaoHP pocaoHP = new PocaoHP("Poção de Vida", 5, tipoAll, 25);
 
         switch (escolha) {
             case 1:
                 System.out.println("Encontraste uma poção de cura!");
-                PocaoHP pocaoHP = new PocaoHP("Poção de Vida", 5, tipoAll, 25);
                 heroi.adicionarPocaoHP(pocaoHP);
+
+                heroi.setHP(heroi.getHP() + pocaoHP.getCura());
+                heroi.removePocaoHP(pocaoHP);
+                System.out.println("A poção de cura restaurou " + pocaoHP.getCura() + " de HP.");
                 break;
             case 2:
                 System.out.println("Decidiste não abrir!");
                 break;
 
         }
+
         //Vendedor
-        
+        System.out.println("Um sujeito de manto preto surge no meio de névoa cerrada, pergunta-lhe se pretende comprar alguma coisa: ");
+        System.out.println("(1) Sim, (2) Não");
+        int escolha2 = input.nextInt();
+
+        switch (escolha2) {
+            case 1:
+                System.out.println("Items disponiveis: ");
+                System.out.println();
+                vendedor.imprimirInventario(itens);
+                System.out.println();
+                System.out.print("Escolha o que deseja comprar: ");
+                String opcaoComprar = input.next();
+                break;
+            case 2:
+                System.out.println("Decidiste avançar e não comprar nada!");
+                break;
+        }
+
+        //Primeiro confronto
+        System.out.println("Chegou à casa de Shion de Carneiro!");
+        System.out.println("Shion, um guerreiro sereno, honrado e nobre com uma natureza valente, determinada e impulsiva.");
+
+
+        /*****************************************************************/
+
+
+        boolean returnToCase1 = false;
+        PocaoHP pocaoHP1 = new PocaoHP("Poção de Vida", 5, tipoAll, 25);
+        do {
+            escolha2 = 1;
+
+            switch (escolha2) {
+
+                case 1:
+                    System.out.println("Antes de avançar para a próxima casa, deseja comprar algum item? ");
+                    System.out.println("(1) Sim, (2) Não");
+                    int escolha3 = input.nextInt();
+
+                    if (escolha3 == 1) {
+                        Vendedor vendedor1 = new Vendedor();
+                        vendedor1.imprimirInventario(itens);
+
+                        // Ask if the user wants to buy anything
+                        System.out.println("Desejas comprar algum item? (S/N)");
+                        String resposta = input.nextLine();
+
+                        //faz aqui alguma coisa para comprar item e adicionar ao inventario do heroi
+                    }
+
+                        break;
+
+                        case 2:
+                            //Primeiro confronto
+                            System.out.println("Chegou à casa de Shion de Carneiro!");
+                            System.out.println("Shion, um guerreiro sereno, honrado e nobre com uma natureza valente, determinada e impulsiva.");
+                            System.out.println("Prepara-te para combater!");
+
+                            NPC Shion = new NPC("Shion", 150, 100);
+                            heroi.atacar(Shion);
+                            returnToCase1 = true;
+                            break;
+
+                        case 3:
+                            //Segundo confronto
+                            System.out.println("Chegou à casa de Aldebaran de Touro!");
+                            System.out.println("Aldebaran, um guerreiro divertido, humilde e aventureiro com bom coração, mas forte, atlético e com uma força inigualável!");
+                            System.out.println("Prepara-te para combater!");
+
+                            NPC Aldebaran = new NPC("Aldebaran", 300, 200);
+                            heroi.atacar(Aldebaran);
+                            returnToCase1 = true;
+                            break;
+
+                            case 4:
+                                //Terceiro confronto
+                                System.out.println("Chegou à casa de Saga de Gémeos!");
+                                System.out.println("Saga, um guerreiro de dupla personalidade, oscilando entre extremos do bem e do mal. Dentro dele, esses opostos estavam sempre a lutar entre si. Depois de ter o seu coração purificado, ele mesmo tira a sua própria vida!");
+                                System.out.println("Esta casa aparenta não ter ninguém, no entanto, encontraste um baú no interior da casa, desejas abrir?");
+
+                                System.out.println("(1) Sim, (2) Não");
+                                int escolhaa = input.nextInt();
+
+                                if (escolhaa == 1) {
+                                    System.out.println("Encontraste uma poção de cura!");
+                                    heroi.adicionarPocaoHP(pocaoHP1);
+
+                                    heroi.setHP(heroi.getHP() + pocaoHP1.getCura());
+                                    heroi.removePocaoHP(pocaoHP1);
+                                    System.out.println("A poção de cura restaurou " + pocaoHP1.getCura() + " de HP.");
+                                }
+                                else {
+                                    System.out.println("Decidiste não abrir!");
+                                }
+                                break;
+
+                                case 5:
+                                    //Quarto confronto
+                                    System.out.println("Chegou à casa de Schiller de Caranguejo!");
+                                    System.out.println("Cuidado, Shiller é um guerreiro extremamente poderoso! Considerado o Máscara da Morte tem uma personalidade violenta, sanguinário, forte e sádico...");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Schiller = new NPC("Schiller", 150, 100);
+                                    heroi.atacar(Schiller);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 6:
+                                    //Quinto confronto
+                                    System.out.println("Chegou à casa de Aiolia de Leão!");
+                                    System.out.println("Aiolia, é um dos mais nobres e valentes cavaleiros do Zodiaco, sempre disposto a lutar pela justiça!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Aiolia = new NPC("Aiolia", 100, 100);
+                                    heroi.atacar(Aiolia);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 7:
+                                    //Sexto confronto
+                                    System.out.println("Chegou à casa de Shaka de Virgem!");
+                                    System.out.println("Shaka é um homem que possui grande poder, sabedoria e conhecimento, o que o fazem ser admirado e respeitado pelos seus companheiros!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Shaka = new NPC("Shaka", 150, 100);
+                                    heroi.atacar(Shaka);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 8:
+                                    PocaoHP armBalanca = new PocaoHP("Armadura de Balança", 0, tipoAll, 45);
+                                    //Sétimo confronto
+                                    System.out.println("Chegou à casa de Dohko de Balança!");
+                                    System.out.println("Dohko é uma pessoa calma, disciplinada, leal e equilibrada, algo que lhe fez valer o titulo de Cavaleiro que rege o Equilíbrio e a Harmonia entre os Cavaleiros de Ouro!");
+                                    System.out.println("Ao entrar na casa de Balança, depara se que está uma armadura no centro!");
+                                    System.out.println("Deseja utilizar?");
+
+                                    System.out.println("(1) Sim, (2) Não");
+                                    int opcao2 = input.nextInt();
+
+                                    if (opcao2 == 1) {
+                                        System.out.println("Adquiriste a Armadura de Balança!");
+                                        heroi.adicionarPocaoHP(armBalanca);
+
+                                        heroi.setHP(heroi.getHP() + armBalanca.getCura());
+//                                        heroi.removePocaoHP(armBalanca);
+                                        System.out.println("A Armadura de Balança " + armBalanca.getCura() + " de HP.");
+                                    }
+                                    else {
+                                        System.out.println("Decidiste não abrir!");
+                                    }
+                                    returnToCase1= true;
+                                    break;
+                                case 9:
+                                    //Sétimo confronto
+                                    System.out.println("Chegou à casa de Milo de Escorpião!");
+                                    System.out.println("Milo é um homem que possui grande poder, sabedoria e conhecimento, o que o fazem ser admirado e respeitado pelos seus companheiros!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Milo = new NPC("Shaka", 150, 100);
+                                    heroi.atacar(Milo);
+                                    returnToCase1= true;
+                                    break;
+
+
+
+                        default:
+
+                            break;
+                    }
+
+        } while (returnToCase1);
+
 
 
 

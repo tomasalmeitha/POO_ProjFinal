@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Feiticeiro extends Heroi {
 
     public Feiticeiro(String nome, int HP, int forca, int nivel, int ouro, Arma arma, ArrayList<PocaoHP> pocoes) {
-        super(nome, HP, forca, nivel, ouro, arma, pocoes);
+        super(nome, HP, forca, nivel, ouro, arma);
     }
 
     public Feiticeiro() {
@@ -21,18 +21,20 @@ public class Feiticeiro extends Heroi {
         int danoHeroi = getForca() + getArma().getAtaque();
         int danoNPC = npc.getForca();
 
-        //Herói ataca primeiro
-        npc.setHP(npc.getHP() - danoHeroi);
+        while (npc.getHP() > 0 && this.getHP() > 0) {
+            //Herói ataca primeiro
+            npc.setHP(npc.getHP() - danoHeroi);
 
-        if(npc.getHP() <= 0) {
-            System.out.println("Feiticeiro derrotou o inimigo " +npc.getNome());
-        }
+            if (npc.getHP() <= 0) {
+                System.out.println("Feiticeiro derrotou o inimigo " + npc.getNome());
+            }
 
-        //NPC ataca de seguida
-        this.setHP(this.getHP() - danoNPC);
+            //NPC ataca de seguida
+            this.setHP(this.getHP() - danoNPC);
 
-        if(this.getHP() <= 0){
-            System.out.println("Feiticeiro foi derrotado pelo inimigo " +npc.getNome());
+            if (this.getHP() <= 0) {
+                System.out.println("Feiticeiro foi derrotado pelo inimigo " + npc.getNome());
+            }
         }
     }
 

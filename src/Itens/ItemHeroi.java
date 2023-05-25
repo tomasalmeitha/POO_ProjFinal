@@ -28,8 +28,8 @@ public abstract class ItemHeroi {
     }
 
     public void mostrarDetalhes() {
-        System.out.println("Nome: " +getNome());
-        System.out.println("Preço: " +getPreco());
-        System.out.println("Herói apto a usar: " +getTipoHeroi());
+//        System.out.println("Nome: " +getNome());
+//        System.out.println("Preço: " +getPreco());
+//        System.out.println("Herói apto a usar: " +getTipoHeroi());
     }
 }
