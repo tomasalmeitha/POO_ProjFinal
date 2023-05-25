@@ -97,7 +97,7 @@ public class Jogo {
                     return;
                 }
 
-                if(vidaPoints > pontosCriacao && forcaPoints > pontosCriacao){
+                if(vidaPoints > pontosCriacao || forcaPoints > pontosCriacao){
                     System.out.println("Pontos de criação excedidos. Tente novamente!");
                     return;
                 }
@@ -200,6 +200,7 @@ public class Jogo {
         System.out.println("Irás percorrer esta jornada com Seiya de Pégasus, Shiryu de Dragão, Hyoga de Cisne e Shun de Andrómeda como teus fieis companheiros!");
         System.out.println();
         System.out.println("Boa sorte e que Zeus te acompanhe!");
+
 
     //Inicio - "Sala de tesouro"
         System.out.println("Existe uma arca perto da escadaria da primeira casa do Zodiaco, desejas abrir?");
@@ -373,17 +374,81 @@ public class Jogo {
                                     returnToCase1= true;
                                     break;
                                 case 9:
-                                    //Sétimo confronto
+                                    //Oitavo confronto
                                     System.out.println("Chegou à casa de Milo de Escorpião!");
-                                    System.out.println("Milo é um homem que possui grande poder, sabedoria e conhecimento, o que o fazem ser admirado e respeitado pelos seus companheiros!");
+                                    System.out.println("Milo tem uma personalidade ativa e arrogante, mas apesar disso, Milo é um homem muito nobre e possui um grande senso de justiça e muito hábil!");
                                     System.out.println("Prepara-te para combater!");
-                                    NPC Milo = new NPC("Shaka", 150, 100);
+                                    NPC Milo = new NPC("Milo", 150, 100);
                                     heroi.atacar(Milo);
                                     returnToCase1= true;
                                     break;
 
+                                case 10:
+                                    //Nono confronto
+                                    PocaoHP armSagitario = new PocaoHP("Armadura de Sagitário", 0, tipoAll, 45);
+                                    //Nono confronto
+                                    System.out.println("Chegou à casa de Iuka de Sagitário!");
+                                    System.out.println("Iuka é um cavaleiro bondoso e gentil(até demais), mas não deixa de cumprir seu dever!");
+                                    System.out.println("Ao entrar na casa de Sagitário, depara se que está uma armadura no centro!");
+                                    System.out.println("Deseja utilizar?");
 
+                                    System.out.println("(1) Sim, (2) Não");
+                                    int opcao3 = input.nextInt();
 
+                                    if (opcao3 == 1) {
+                                        System.out.println("Adquiriste a Armadura de Sagitário!");
+                                        heroi.adicionarPocaoHP(armSagitario);
+
+                                        heroi.setHP(heroi.getHP() + armSagitario.getCura());
+//                                        heroi.removePocaoHP(armSagitario);
+                                        System.out.println("A Armadura de Sagitário " + armSagitario.getCura() + " de HP.");
+                                    }
+                                    else {
+                                        System.out.println("Decidiste não abrir!");
+                                    }
+
+                                    returnToCase1= true;
+                                    break;
+
+                                case 11:
+                                    //Décimo confronto
+                                    System.out.println("Chegou à casa de Shura de Capricórnio!");
+                                    System.out.println("Shura é um cavaleiro de ouro bastante poderoso, com uma facilidade espantosa em lançar sua fortíssima Excalibur na velocidade da luz!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Shura = new NPC("Shura", 150, 100);
+                                    heroi.atacar(Shura);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 12:
+                                    //Décimo primeiro confronto
+                                    System.out.println("Chegou à casa de Camus de Aquário!");
+                                    System.out.println("Camus é um cavaleiro com uma serenidade e frieza inigualável no campo de batalha. Camus é inflexível quando acredita em algo, mas permanece sempre calmo e calculista!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Camus = new NPC("Camus", 150, 100);
+                                    heroi.atacar(Camus);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 13:
+                                    //Décimo segundo confronto
+                                    System.out.println("Chegou à casa de Afrodite de Peixes!");
+                                    System.out.println("Afrodite possui habilidades ofensivas e defensivas, é capaz de remover os sentidos de seus oponentes e de destruir Armaduras de Bronze facilmente!");
+                                    System.out.println("Prepara-te para combater!");
+                                    NPC Afrodite = new NPC("Camus", 150, 100);
+                                    heroi.atacar(Afrodite);
+                                    returnToCase1= true;
+                                    break;
+
+                                case 14:
+                                    //Final boss
+                                    System.out.println("Confronto final contra Saga de Gémeos!");
+                                    System.out.println("O destino de Atena está nas tuas mãos!");
+                                    System.out.println("Prepara-te bem para a batalha!!");
+                                    NPC Saga = new NPC("Saga", 250, 200);
+                                    heroi.atacar(Saga);
+                                    returnToCase1= true;
+                                    break;
                         default:
 
                             break;

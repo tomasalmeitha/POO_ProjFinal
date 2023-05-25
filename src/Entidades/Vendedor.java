@@ -28,13 +28,14 @@ public class Vendedor {
 
     public void vender(Heroi heroi, ItemHeroi item){
 
+
         if(heroi.getOuro() >= item.getPreco()){
 
             heroi.setOuro(heroi.getOuro() - item.getPreco());
 
             if(item instanceof Arma){
                 heroi.setArma((Arma) item);
-                System.out.println("Item comprado: " +item.getNome()+ " Arma");
+                System.out.println("Arma comprada: " +item.getNome()+ " Arma");
             }
             if (item instanceof PocaoHP){
                 heroi.adicionarPocaoHP((PocaoHP) item);
