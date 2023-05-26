@@ -11,11 +11,9 @@ public abstract class Heroi extends Entidade {
     private Arma arma;
     private ArrayList<PocaoHP> pocoes = new ArrayList<>();
 
-    public Heroi(String nome, int HP, int forca, int nivel, int ouro, Arma arma) {
+    public Heroi(String nome, int HP, int forca, int ouro) {
         super(nome, HP, forca);
-        this.nivel = nivel;
         this.ouro = ouro;
-        this.arma = arma;
 
     }
 
@@ -65,6 +63,7 @@ public abstract class Heroi extends Entidade {
 
     public void setArma(Arma arma) {
         this.arma = arma;
+
     }
 
     public ArrayList<PocaoHP> getPocoes() {

@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Feiticeiro extends Heroi {
 
-    public Feiticeiro(String nome, int HP, int forca, int nivel, int ouro, Arma arma, ArrayList<PocaoHP> pocoes) {
-        super(nome, HP, forca, nivel, ouro, arma);
+    public Feiticeiro(String nome, int HP, int forca, int ouro, ArrayList<PocaoHP> pocoes) {
+        super(nome, HP, forca, ouro);
     }
 
     public Feiticeiro() {
@@ -16,7 +16,6 @@ public class Feiticeiro extends Heroi {
 
     @Override
     public void atacar(NPC npc) {
-        super.atacar(npc);
 
         int danoHeroi = getForca() + getArma().getAtaque();
         int danoNPC = npc.getForca();

@@ -5,6 +5,7 @@ import Itens.ItemHeroi;
 import Itens.PocaoHP;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Vendedor {
     private ArrayList<ItemHeroi> itens;
@@ -26,25 +27,61 @@ public class Vendedor {
         }
     }
 
-    public void vender(Heroi heroi, ItemHeroi item){
+    public void vender(Heroi heroi) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Qual item desejas comprar?");
+
+        int escolha = input.nextInt();
+
+        int itemIndex = escolha - 1;
 
 
-        if(heroi.getOuro() >= item.getPreco()){
+        if (itemIndex >= 0 && itemIndex < itens.size()) {
+            System.out.println("www");
+            ItemHeroi item = itens.get(itemIndex);
+            System.out.println(itens.get(itemIndex).getNome());
+            if (item instanceof Arma arma) {
 
-            heroi.setOuro(heroi.getOuro() - item.getPreco());
+                boolean allowedHeroi = false;
 
-            if(item instanceof Arma){
-                heroi.setArma((Arma) item);
-                System.out.println("Arma comprada: " +item.getNome()+ " Arma");
+                for (String heroiType : item.getTipoHeroi()) {
+
+                    System.out.println("Tipo de heroi a chegar: " +heroiType);
+                    System.out.println("Cenas" +itens.getClass().getSimpleName());
+                    if (heroiType.equalsIgnoreCase(itens.getClass().getSimpleName())) {
+                        allowedHeroi = true;
+                        break;
+                    }
+
+                }
+                if (allowedHeroi) {
+                    if (heroi.getOuro() >= item.getPreco()) {
+                        heroi.setOuro(heroi.getOuro() - item.getPreco());
+                        heroi.setArma(arma);
+                        System.out.println("Arma comprada: " + item.getNome());
+
+                    } else {
+                        System.out.println("Não tens ouro suficiente para comprar a arma.");
+                    }
+                } else {
+                    System.out.println("Esta arma não é adequada para o teu tipo de herói.");
+                }
             }
-            if (item instanceof PocaoHP){
-                heroi.adicionarPocaoHP((PocaoHP) item);
-                System.out.println("Poção comprada: " +item.getNome()+ " Poção de HP");
-            }
-            else {
-                System.out.println("A compra não pode ser efectuada!");
+
+            else if (item instanceof PocaoHP pocaoHP) {
+                if (heroi.getOuro() >= item.getPreco()) {
+                    heroi.setOuro(heroi.getOuro() - item.getPreco());
+                    heroi.adicionarPocaoHP(pocaoHP);
+                    System.out.println("Poção comprada: " + item.getNome());
+                } else {
+                    System.out.println("Não tens ouro suficiente para comprar a poção.");
+                }
+            } else {
+                System.out.println("A compra não pode ser efetuada!");
             }
         }
     }
+
 
 }
