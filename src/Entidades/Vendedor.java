@@ -11,10 +11,14 @@ public class Vendedor {
     private ArrayList<ItemHeroi> itens;
 
     public Vendedor() {
-        this.itens = new ArrayList<>();
+        this.itens = itens;
     }
 
-    public void imprimirInventario(ArrayList<ItemHeroi> itens) {
+    public void setItens(ArrayList<ItemHeroi> itens) {
+        this.itens = itens;
+    }
+
+    public void imprimirInventario() {
         for (ItemHeroi item : itens) {
             if (item instanceof Arma) {
                 item.mostrarDetalhes();
@@ -38,22 +42,18 @@ public class Vendedor {
 
 
         if (itemIndex >= 0 && itemIndex < itens.size()) {
-            System.out.println("www");
+
             ItemHeroi item = itens.get(itemIndex);
-            System.out.println(itens.get(itemIndex).getNome());
+
             if (item instanceof Arma arma) {
 
                 boolean allowedHeroi = false;
 
                 for (String heroiType : item.getTipoHeroi()) {
-
-                    System.out.println("Tipo de heroi a chegar: " +heroiType);
-                    System.out.println("Cenas" +itens.getClass().getSimpleName());
-                    if (heroiType.equalsIgnoreCase(itens.getClass().getSimpleName())) {
+                    if (heroiType.equalsIgnoreCase(heroi.getClass().getSimpleName())) {
                         allowedHeroi = true;
                         break;
                     }
-
                 }
                 if (allowedHeroi) {
                     if (heroi.getOuro() >= item.getPreco()) {

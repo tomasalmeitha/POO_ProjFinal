@@ -115,8 +115,8 @@ public class Jogo {
         System.out.print("Insira o seu nome: ");
         String nome = input.next();
         heroi.setNome(nome);
-
-        System.out.println("Você está pronto para iniciar o jogo!");
+        System.out.println();
+        System.out.println("Está pronto para iniciar o jogo!");
         System.out.println("Herói: " + heroi.getNome());
         System.out.println("Vida: " + heroi.getHP());
         System.out.println("Força: " + heroi.getForca());
@@ -185,6 +185,9 @@ public class Jogo {
 //        vendedor.imprimirInventario();
 
         PocaoHP pocaoHP1 = new PocaoHP("Poção de Vida", 5, tipoAll, 35);
+        Vendedor vendedor1 = new Vendedor();
+        vendedor1.setItens(itens);
+
 
         /*********************************************************************************************************************/
 
@@ -279,11 +282,9 @@ public class Jogo {
                     System.out.println("Chegou à casa de Shion de Carneiro!");
                     System.out.println("Shion, um guerreiro sereno, honrado e nobre com uma natureza valente, determinada e impulsiva.");
                     System.out.println("Prepara-te para combater!");
-
                     NPC Shion = new NPC("Shion", 150, 10);
                     heroi.atacar(Shion);
                     //  escolha2 = 1;
-                    System.out.println(+i);
                     break;
 
                 case 3:
@@ -449,24 +450,21 @@ public class Jogo {
                     returnToCase1 = false;
 
                     break;
-                default:
 
+                default:
+                    // Vendedor
+                    System.out.println("Antes de avançar para a próxima casa, deseja comprar algum item? ");
+                    System.out.println("(1) Sim, (2) Não");
+                    int escolha3 = input.nextInt();
+
+                    if (escolha3 == 1) {
+                        vendedor1.imprimirInventario();
+                        vendedor1.vender(heroi);
+                    }
+                    escolha2++;
                     break;
 
             }
-            // Vendedor
-            System.out.println("Antes de avançar para a próxima casa, deseja comprar algum item? ");
-            System.out.println("(1) Sim, (2) Não");
-            int escolha3 = input.nextInt();
-
-            if (escolha3 == 1) {
-
-                Vendedor vendedor1 = new Vendedor();
-                vendedor1.imprimirInventario(itens);
-                vendedor1.vender(heroi);
-            }
-            escolha2++;
-
 
         } while (returnToCase1);
 //            } while (escolha2 != 1);

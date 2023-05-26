@@ -33,12 +33,12 @@ public abstract class Heroi extends Entidade {
 
     public void adicionarPocaoHP(PocaoHP pocaoHP){
         this.pocoes.add(pocaoHP);
-        System.out.println("Poção adicionada ao inventário: " +pocaoHP.getNome());
+        System.out.println("Item adicionado ao inventário: " +pocaoHP.getNome());
     }
 
     public void removePocaoHP(PocaoHP pocaoHP){
         this.pocoes.remove(pocaoHP);
-        System.out.println("Poção retirada ao inventário: " +pocaoHP.getNome());
+        System.out.println("Item retirado ao inventário: " +pocaoHP.getNome());
     }
 
     public int getNivel() {
