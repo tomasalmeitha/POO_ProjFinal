@@ -1,6 +1,5 @@
 package Entidades;
 
-import Itens.Arma;
 import Itens.PocaoHP;
 
 import java.util.ArrayList;
@@ -15,12 +14,10 @@ public class Cavaleiro extends Heroi {
     }
 
     @Override
-    public void atacar(NPC npc) {
-
-
+    public boolean atacar(NPC npc) {
 
         int danoHeroi = getForca();
-        int danoNPC = npc.getForca();
+        int danoNPC = (int) (npc.getForca()*0.8);
 
 
         while (npc.getHP() > 0 && this.getHP() > 0) {
@@ -29,17 +26,28 @@ public class Cavaleiro extends Heroi {
             this.setHP(this.getHP() - danoNPC);
 
             if (this.getHP() <= 0) {
+                System.out.println();
                 System.out.println("Cavaleiro foi derrotado pelo inimigo " + npc.getNome());
+                return false;
             }
 
             //Cavaleiro ataca de seguida
             npc.setHP(npc.getHP() - danoHeroi);
 
             if (npc.getHP() <= 0) {
+                System.out.println();
                 System.out.println("Cavaleiro derrotou o inimigo " + npc.getNome());
-
+                return true;
             }
+
+            //Empate conta como vitória do herói
+            if (this.getHP() <= 0 && npc.getHP() <= 0) {
+                System.out.println("O combate terminou em empate!");
+                return true;
+            }
+
         }
+        return false;
     }
 
     @Override

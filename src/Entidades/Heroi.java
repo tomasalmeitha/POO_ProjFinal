@@ -49,6 +49,15 @@ public abstract class Heroi extends Entidade {
         this.nivel = nivel;
     }
 
+    public int nivelUp(){
+        int nivelUp = this.nivel++;
+        System.out.println();
+        System.out.println("Subida de nível!");
+        System.out.println("Nível: " +this.getNivel());
+        System.out.println();
+        return nivelUp;
+    }
+
     public int getOuro() {
         return ouro;
     }
@@ -74,7 +83,8 @@ public abstract class Heroi extends Entidade {
         this.pocoes = pocoes;
     }
 
-    public void atacar(NPC npc){
+    public boolean atacar(NPC npc){
 
+        return false;
     }
 }

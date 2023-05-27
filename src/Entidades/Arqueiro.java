@@ -1,6 +1,5 @@
 package Entidades;
 
-import Itens.Arma;
 import Itens.PocaoHP;
 
 import java.util.ArrayList;
@@ -16,9 +15,9 @@ public class Arqueiro extends Heroi {
     }
 
     @Override
-    public void atacar(NPC npc) {
+    public boolean atacar(NPC npc) {
 
-        int danoHeroi =  getForca() + getArma().getAtaque();
+        int danoHeroi = getForca();
         int danoNPC = npc.getForca();
 
 
@@ -29,7 +28,9 @@ public class Arqueiro extends Heroi {
 
             //NPC morreu?...
             if (npc.getHP() <= 0) {
+                System.out.println();
                 System.out.println("Arqueiro derrotou o inimigo " + npc.getNome());
+                return true;
             }
 
             //NPC ataca em segundo e inflige mais 10% de dano ao Heroi
@@ -38,10 +39,18 @@ public class Arqueiro extends Heroi {
 
             //NPC morreu?...
             if (this.getHP() <= 0) {
+                System.out.println();
                 System.out.println("Arqueiro foi derrotado pelo inimigo " + npc.getNome());
+                return false;
+            }
 
+            //Empate conta como vitória do herói
+            if (this.getHP() <= 0 && npc.getHP() <= 0) {
+                System.out.println("O combate terminou em empate!");
+                return true;
             }
         }
+        return false;
     }
 
     @Override

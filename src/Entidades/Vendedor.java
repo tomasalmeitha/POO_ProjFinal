@@ -19,7 +19,10 @@ public class Vendedor {
     }
 
     public void imprimirInventario() {
+        int i = 0;
         for (ItemHeroi item : itens) {
+            i++;
+            System.out.print(i + " - ");
             if (item instanceof Arma) {
                 item.mostrarDetalhes();
                 System.out.println();
@@ -29,7 +32,9 @@ public class Vendedor {
                 System.out.println();
             }
         }
+
     }
+
 
     public void vender(Heroi heroi) {
         Scanner input = new Scanner(System.in);
@@ -60,6 +65,7 @@ public class Vendedor {
                         heroi.setOuro(heroi.getOuro() - item.getPreco());
                         heroi.setArma(arma);
                         System.out.println("Arma comprada: " + item.getNome());
+                        itens.remove(item);
 
                     } else {
                         System.out.println("Não tens ouro suficiente para comprar a arma.");
