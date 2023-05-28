@@ -65,6 +65,7 @@ public class Vendedor {
                         heroi.setOuro(heroi.getOuro() - item.getPreco());
                         heroi.setArma(arma);
                         System.out.println("Arma comprada: " + item.getNome());
+                        System.out.println();
                         itens.remove(item);
 
                     } else {
@@ -80,6 +81,8 @@ public class Vendedor {
                     heroi.setOuro(heroi.getOuro() - item.getPreco());
                     heroi.adicionarPocaoHP(pocaoHP);
                     System.out.println("Poção comprada: " + item.getNome());
+                    System.out.println();
+                    itens.remove(item);
                 } else {
                     System.out.println("Não tens ouro suficiente para comprar a poção.");
                 }

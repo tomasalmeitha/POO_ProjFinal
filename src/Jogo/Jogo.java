@@ -7,6 +7,10 @@ import Itens.PocaoHP;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
+import static Jogo.Signos.*;
 
 public class Jogo {
     public static void main(String[] args) {
@@ -92,15 +96,19 @@ public class Jogo {
 //                    return;
 //                }
                 int vidaPoints;
+
                 do {
                     System.out.print("Pontos de vida(HP): ");
                     vidaPoints = input.nextInt();
-                    if (vidaPoints >= pontosCriacao) {
 
+                    if (vidaPoints > pontosCriacao) {
                         System.out.println("Pontos de criação excedidos. Tente novamente!");
+
+                    } else if (vidaPoints < 0) {
+                        System.out.println("Pontos inválidos. Tente novamente!");
                     }
 
-                } while (vidaPoints > pontosCriacao);
+                } while (vidaPoints > pontosCriacao || vidaPoints < 0);
 
                 int tempPoints = pontosCriacao - vidaPoints;
                 int forcaPoints = tempPoints / 5;
@@ -117,6 +125,7 @@ public class Jogo {
             } while (pontosCriacao != 0);
 
             /*********************************************************************************************************************/
+
             // Atribuição dos atributos à personagem
             heroi.setHP(vida);
             heroi.setForca(forca);
@@ -135,13 +144,13 @@ public class Jogo {
             System.out.println("Ouro: " + heroi.getOuro());
             System.out.println("Nível: " +heroi.getNivel());
 
-
             /*********************************************************************************************************************/
 
 //        //Instanciamento de items para o inventário
 
 
             /*********************************************************************************************************************/
+
             System.out.println();
             System.out.println("Bem vindo, " + heroi.getNome() + " à Lenda dos Defensores de Atena!");
             System.out.println();
@@ -156,9 +165,6 @@ public class Jogo {
             System.out.println("Boa sorte e que Zeus te acompanhe!");
             System.out.println();
             System.out.println();
-
-
-            /*****************************************************************/
 
 
             labirinto(heroi);
@@ -242,8 +248,6 @@ public class Jogo {
             itens.add(lancaRamses);
 
 
-//        Vendedor vendedor = new Vendedor();
-//        vendedor.imprimirInventario();
 
             PocaoHP pocaoHP1 = new PocaoHP("Poção de Vida", 5, tipoAll, 35);
             Vendedor vendedor1 = new Vendedor();
@@ -258,6 +262,7 @@ public class Jogo {
 
                     case 1:
                         // Vendedor
+                        System.out.println();
                         System.out.println("Antes de avançar, deseja comprar algum item? ");
                         System.out.println("(1) Sim, (2) Não");
                         int escolha3 = input.nextInt();
@@ -271,6 +276,7 @@ public class Jogo {
 
                     case 2:
                         //Primeiro confronto
+                        function1();
                         System.out.println();
                         System.out.println("Chegou à casa de Shion de Carneiro!");
                         System.out.println("Shion, um guerreiro sereno, honrado e nobre com uma natureza valente, determinada e impulsiva.");
@@ -287,6 +293,8 @@ public class Jogo {
 
                     case 4:
                         //Segundo confronto
+                        function2();
+                        System.out.println();
                         System.out.println("Chegou à casa de Aldebaran de Touro!");
                         System.out.println("Aldebaran, um guerreiro divertido, humilde e aventureiro com bom coração, mas forte, atlético e com uma força inigualável!");
                         System.out.println("Prepara-te para combater!");
@@ -302,6 +310,8 @@ public class Jogo {
 
                     case 6:
                         //Terceiro confronto
+                        function3();
+                        System.out.println();
                         System.out.println("Chegou à casa de Saga de Gémeos!");
                         System.out.println("Saga, um guerreiro de dupla personalidade, oscilando entre extremos do bem e do mal. Dentro dele, esses opostos estavam sempre a lutar entre si. Depois de ter o seu coração purificado, ele mesmo tira a sua própria vida!");
                         System.out.println();
@@ -330,6 +340,8 @@ public class Jogo {
 
                     case 8:
                         //Quarto confronto
+                        function4();
+                        System.out.println();
                         System.out.println("Chegou à casa de Schiller de Caranguejo!");
                         System.out.println("Cuidado, Shiller é um guerreiro extremamente poderoso! Considerado o Máscara da Morte tem uma personalidade violenta, sanguinário, forte e sádico...");
                         System.out.println("Prepara-te para combater!");
@@ -345,6 +357,8 @@ public class Jogo {
 
                     case 10:
                         //Quinto confronto
+                        function5();
+                        System.out.println();
                         System.out.println("Chegou à casa de Aiolia de Leão!");
                         System.out.println("Aiolia, é um dos mais nobres e valentes cavaleiros do Zodiaco, sempre disposto a lutar pela justiça!");
                         System.out.println("Prepara-te para combater!");
@@ -360,6 +374,8 @@ public class Jogo {
 
                     case 12:
                         //Sexto confronto
+                        function6();
+                        System.out.println();
                         System.out.println("Chegou à casa de Shaka de Virgem!");
                         System.out.println("Shaka é um homem que possui grande poder, sabedoria e conhecimento, o que o fazem ser admirado e respeitado pelos seus companheiros!");
                         System.out.println("Prepara-te para combater!");
@@ -374,6 +390,9 @@ public class Jogo {
                         break;
 
                     case 14:
+                        //Sétimo confronto
+                        function7();
+                        System.out.println();
                         PocaoHP armBalanca = new PocaoHP("Armadura de Balança", 0, tipoAll, 45);
                         //Sétimo confronto
                         System.out.println("Chegou à casa de Dohko de Balança!");
@@ -399,6 +418,8 @@ public class Jogo {
 
                     case 16:
                         //Oitavo confronto
+                        function8();
+                        System.out.println();
                         System.out.println("Chegou à casa de Milo de Escorpião!");
                         System.out.println("Milo tem uma personalidade ativa e arrogante, mas apesar disso, Milo é um homem muito nobre e possui um grande senso de justiça e muito hábil!");
                         System.out.println("Prepara-te para combater!");
@@ -414,6 +435,8 @@ public class Jogo {
 
                     case 18:
                         //Nono confronto
+                        function9();
+                        System.out.println();
                         PocaoHP armSagitario = new PocaoHP("Armadura de Sagitário", 0, tipoAll, 45);
                         //Nono confronto
                         System.out.println("Chegou à casa de Iuka de Sagitário!");
@@ -439,6 +462,8 @@ public class Jogo {
 
                     case 20:
                         //Décimo confronto
+                        function10();
+                        System.out.println();
                         System.out.println("Chegou à casa de Shura de Capricórnio!");
                         System.out.println("Shura é um cavaleiro de ouro bastante poderoso, com uma facilidade espantosa em lançar sua fortíssima Excalibur na velocidade da luz!");
                         System.out.println("Prepara-te para combater!");
@@ -454,6 +479,8 @@ public class Jogo {
 
                     case 22:
                         //Décimo primeiro confronto
+                        function11();
+                        System.out.println();
                         System.out.println("Chegou à casa de Camus de Aquário!");
                         System.out.println("Camus é um cavaleiro com uma serenidade e frieza inigualável no campo de batalha. Camus é inflexível quando acredita em algo, mas permanece sempre calmo e calculista!");
                         System.out.println("Prepara-te para combater!");
@@ -469,6 +496,8 @@ public class Jogo {
 
                     case 24:
                         //Décimo segundo confronto
+                        function12();
+                        System.out.println();
                         System.out.println("Chegou à casa de Afrodite de Peixes!");
                         System.out.println("Afrodite possui habilidades ofensivas e defensivas, é capaz de remover os sentidos de seus oponentes e de destruir Armaduras de Bronze facilmente!");
                         System.out.println("Prepara-te para combater!");
@@ -483,6 +512,8 @@ public class Jogo {
 
                     case 26:
                         //Final boss
+                        function3();
+                        System.out.println();
                         System.out.println("Confronto final contra Saga de Gémeos!");
                         System.out.println("O destino de Atena está nas tuas mãos!");
                         System.out.println("Prepara-te bem para a batalha!!");
@@ -512,6 +543,8 @@ public class Jogo {
                 System.out.println("Conseguiste resgatar a princesa Atena a tempo e a paz voltou ao mundo!");
             }
         }
-    }
+
+
+}
 
 
