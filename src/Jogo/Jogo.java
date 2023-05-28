@@ -12,7 +12,14 @@ import java.io.FileNotFoundException;
 
 import static Jogo.Signos.*;
 
+/**
+ * O programa desenvolvido é um jogo baseado na Lenda dos Cavaleiros do Zodiaco e tenta ser o mais fiél possível à história da série Anime criada em 1988.
+ * O utilizador/jogador pode explorar um labirinto, que é no fundo o seu percurso até à última casa do Zodiaco em que tem de enfrentar o Cavaleiro de Gémeos, Saga, para poder socorrer a princesa Atena.
+ * Cada casa, terá um Cavaleiro de Ouro (NPC), guardião de cada casa do Zodiaco ou poderá ser uma 'casa tesouro' com poções e armaduras que lhe aumentam pontos de vida.
+ * Poderá também interagir com um Vendedor que lhe vende artefactos e poções.
+ * Este jogo oferece também diferentes tipos de Heróis (Cavaleiro, Feiticeiro e Arqueiro) assim como níveis de dificuldade associados.*/
 public class Jogo {
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -26,7 +33,7 @@ public class Jogo {
                 System.out.println();
                 System.out.println("Escolha o tipo de herói: (1) Cavaleiro, (2) Feiticeiro, (3) Arqueiro");
                 int heroChoice = input.nextInt();
-
+                // Validação do tipo escolhido
                 switch (heroChoice) {
                     case 1:
                         heroi = new Cavaleiro();
@@ -46,7 +53,7 @@ public class Jogo {
 
 /*********************************************************************************************************************/
 
-            // Escolha dificuldade do jogo
+            // Escolha da dificuldade do jogo
             int difficultyChoice;
             int pontosCriacao;
             int ouro;
@@ -54,7 +61,7 @@ public class Jogo {
             do {
                 System.out.println("Escolha a dificuldade: (1) Fácil, (2) Difícil");
                 difficultyChoice = input.nextInt();
-
+                // Validação do input de dificuldade
                 switch (difficultyChoice) {
                     case 1:
                         pontosCriacao = 300;
@@ -88,15 +95,9 @@ public class Jogo {
                 System.out.println("Cada ponto de vida vale um ponto de criação e cada ponto de força vale 5 pontos!");
                 System.out.println();
 
-//                System.out.print("Pontos de força: ");
 
-
-//                if (vidaPoints < 0 || forcaPoints < 0) {
-//                    System.out.println("Pontos inválidos. Tente novamente!");
-//                    return;
-//                }
                 int vidaPoints;
-
+                //Atribuição dos pontos de vida(HP) e pontos de força. Validação dos valores inseridos.
                 do {
                     System.out.print("Pontos de vida(HP): ");
                     vidaPoints = input.nextInt();
@@ -113,11 +114,6 @@ public class Jogo {
                 int tempPoints = pontosCriacao - vidaPoints;
                 int forcaPoints = tempPoints / 5;
 
-//                if (vidaPoints > pontosCriacao || forcaPoints > pontosCriacao) {
-//                    System.out.println("Pontos de criação excedidos. Tente novamente!");
-//                    return;
-//                }
-
                 vida += vidaPoints;
                 forca += forcaPoints;
                 pontosCriacao -= vidaPoints + forcaPoints * 5;
@@ -126,7 +122,7 @@ public class Jogo {
 
             /*********************************************************************************************************************/
 
-            // Atribuição dos atributos à personagem
+            // Atribuição dos atributos à personagem baseado no grau de dificuldade escolhido
             heroi.setHP(vida);
             heroi.setForca(forca);
 
@@ -146,11 +142,7 @@ public class Jogo {
 
             /*********************************************************************************************************************/
 
-//        //Instanciamento de items para o inventário
-
-
-            /*********************************************************************************************************************/
-
+            //Introdução do jogo
             System.out.println();
             System.out.println("Bem vindo, " + heroi.getNome() + " à Lenda dos Defensores de Atena!");
             System.out.println();
@@ -166,9 +158,9 @@ public class Jogo {
             System.out.println();
             System.out.println();
 
-
+            //Instanciamento do labirinto passando o objecto 'heroi' como parâmetro
             labirinto(heroi);
-
+            //Condição que pergunta ao jogador se deseja jogar novamente
             System.out.println();
             System.out.println("Fim do Jogo!");
             System.out.println("Deseja jogar novamente? (1) Sim, (2) Não");
@@ -187,12 +179,16 @@ public class Jogo {
         } while(playAgain);
     }
 
+    /**
+     * Este método é o labirinto do jogo, onde o jogador enfrenta os adversários e interage com o vendedor
+     * @param heroi representa a personagem do jogador.
+     */
         public static void labirinto(Heroi heroi) {
 
             Scanner input = new Scanner(System.in);
 
 
-            //Instanciamento de items para o inventário
+            //Instanciamento de items para o inventário do Vendedor
             ArrayList<String> tipoKnight = new ArrayList<>();
             tipoKnight.add("Cavaleiro");
 
@@ -248,7 +244,8 @@ public class Jogo {
             itens.add(lancaRamses);
 
 
-
+            //Instanciamento de objectos: uma poção de vida, a personagem Vendedor e o seu inventário
+            //Assim como a variável 'victory' responsável por atribuir a vitória ao jogador e o aparecimento do Vendedor antes do jogador entrar em alguma casa
             PocaoHP pocaoHP1 = new PocaoHP("Poção de Vida", 5, tipoAll, 35);
             Vendedor vendedor1 = new Vendedor();
             vendedor1.setItens(itens);
@@ -262,7 +259,6 @@ public class Jogo {
 
                     case 1:
                         // Vendedor
-                        System.out.println();
                         System.out.println("Antes de avançar, deseja comprar algum item? ");
                         System.out.println("(1) Sim, (2) Não");
                         int escolha3 = input.nextInt();
@@ -398,16 +394,17 @@ public class Jogo {
                         System.out.println("Chegou à casa de Dohko de Balança!");
                         System.out.println("Dohko é uma pessoa calma, disciplinada, leal e equilibrada, algo que lhe fez valer o titulo de Cavaleiro que rege o Equilíbrio e a Harmonia entre os Cavaleiros de Ouro!");
                         System.out.println();
-                        System.out.println("Ao entrar na casa de Balança, depara se que está uma armadura no centro!");
-                        System.out.println("Deseja utilizar?");
+                        System.out.println("Ao entrar na casa de Balança, deparas te com uns artefactos no centro!");
+                        System.out.println("Desejas investigar?");
                         System.out.println("(1) Sim, (2) Não");
                         int opcao2 = input.nextInt();
 
                         if (opcao2 == 1) {
-                            System.out.println("Adquiriste a Armadura de Balança!");
+                            System.out.println("Adquiriste a Armadura de Balança e 20 moedas de ouro!");
                             heroi.adicionarPocaoHP(armBalanca);
-
                             heroi.setHP(heroi.getHP() + armBalanca.getCura());
+                            heroi.setOuro(heroi.getOuro() + 20);
+                            System.out.println();
 //
                             System.out.println("A Armadura de Balança " + armBalanca.getCura() + " de HP.");
                         } else {
@@ -534,6 +531,7 @@ public class Jogo {
                 }
 
             } while (returnToCase1);
+            //No caso do jogador ganhar
             if (victory) {
                 System.out.println();
                 System.out.println();
