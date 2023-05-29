@@ -7,16 +7,33 @@ import Itens.PocaoHP;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Vendedor {
-    private ArrayList<ItemHeroi> itens;
 
+/**
+ * A classe 'Vendedor' representa um vendedor que vende itens a heróis
+ * */
+
+public class Vendedor {
+
+    private ArrayList<ItemHeroi> itens;
+/**
+ * Constructor 'Vendedor', constrói um novo objecto com uma lista de items vazia
+ * */
     public Vendedor() {
         this.itens = itens;
     }
 
+/**
+ * Método responsável por actualizar os itens disponíveis do Vendedor
+ *
+ * @param itens representa a lista de itens disponíveis
+ * */
     public void setItens(ArrayList<ItemHeroi> itens) {
         this.itens = itens;
     }
+
+    /**
+     * Printa a lista de itens (inventário)
+     * */
 
     public void imprimirInventario() {
         int i = 0;
@@ -35,6 +52,11 @@ public class Vendedor {
 
     }
 
+    /**
+     * Método responsável por vender umm item ao Herói
+     *
+     * @param heroi a que vende um item
+     * */
 
     public void vender(Heroi heroi) {
         Scanner input = new Scanner(System.in);
@@ -43,24 +65,24 @@ public class Vendedor {
 
         int escolha = input.nextInt();
 
-        int itemIndex = escolha - 1;
+        int itemIndice = escolha - 1;
 
 
-        if (itemIndex >= 0 && itemIndex < itens.size()) {
+        if (itemIndice >= 0 && itemIndice < itens.size()) {
 
-            ItemHeroi item = itens.get(itemIndex);
+            ItemHeroi item = itens.get(itemIndice);
 
             if (item instanceof Arma arma) {
 
-                boolean allowedHeroi = false;
+                boolean permitHeroi = false;
 
-                for (String heroiType : item.getTipoHeroi()) {
-                    if (heroiType.equalsIgnoreCase(heroi.getClass().getSimpleName())) {
-                        allowedHeroi = true;
+                for (String heroiTipo : item.getTipoHeroi()) {
+                    if (heroiTipo.equalsIgnoreCase(heroi.getClass().getSimpleName())) {
+                        permitHeroi = true;
                         break;
                     }
                 }
-                if (allowedHeroi) {
+                if (permitHeroi) {
                     if (heroi.getOuro() >= item.getPreco()) {
                         heroi.setOuro(heroi.getOuro() - item.getPreco());
                         heroi.setArma(arma);

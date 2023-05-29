@@ -28,11 +28,12 @@ public class Jogo {
 
         Heroi heroi;
         do {
+            int heroChoice;
             do {
                 // Escolha do tipo de herói
                 System.out.println();
                 System.out.println("Escolha o tipo de herói: (1) Cavaleiro, (2) Feiticeiro, (3) Arqueiro");
-                int heroChoice = input.nextInt();
+                heroChoice = input.nextInt();
                 // Validação do tipo escolhido
                 switch (heroChoice) {
                     case 1:
@@ -49,7 +50,7 @@ public class Jogo {
                         heroi = null;
                         break;
                 }
-            } while (heroi == null);
+            } while (heroi == null || (heroChoice != 1 && heroChoice != 2));
 
 /*********************************************************************************************************************/
 
@@ -77,7 +78,7 @@ public class Jogo {
                         ouro = 0;
                         break;
                 }
-            } while (pontosCriacao == 0);
+            } while (pontosCriacao == 0 || (difficultyChoice != 1 && difficultyChoice != 2));
 
 
 /*********************************************************************************************************************/
@@ -138,7 +139,7 @@ public class Jogo {
             System.out.println("Vida: " + heroi.getHP());
             System.out.println("Força: " + heroi.getForca());
             System.out.println("Ouro: " + heroi.getOuro());
-            System.out.println("Nível: " +heroi.getNivel());
+            System.out.println("Nível: " + heroi.getNivel());
 
             /*********************************************************************************************************************/
 
@@ -167,10 +168,9 @@ public class Jogo {
 
             int jogoNovoChoice = input.nextInt();
 
-            if (jogoNovoChoice == 1){
+            if (jogoNovoChoice == 1) {
                 playAgain = true;
-            }
-            else if (jogoNovoChoice == 2){
+            } else if (jogoNovoChoice == 2) {
                 System.out.println();
                 System.out.println("Até à próxima!");
                 playAgain = false;
@@ -259,14 +259,17 @@ public class Jogo {
 
                     case 1:
                         // Vendedor
-                        System.out.println("Antes de avançar, deseja comprar algum item? ");
-                        System.out.println("(1) Sim, (2) Não");
-                        int escolha3 = input.nextInt();
+                        int escolha3;
+                        do {
+                            System.out.println("Antes de avançar, deseja comprar algum item? ");
+                            System.out.println("(1) Sim, (2) Não");
+                            escolha3 = input.nextInt();
 
-                        if (escolha3 == 1) {
-                            vendedor1.imprimirInventario();
-                            vendedor1.vender(heroi);
-                        }
+                            if (escolha3 == 1) {
+                                vendedor1.imprimirInventario();
+                                vendedor1.vender(heroi);
+                            }
+                        } while (escolha3 != 1 && escolha3 != 2);
                         escolha2 = i;
                         break;
 
@@ -319,14 +322,14 @@ public class Jogo {
                             System.out.println("Encontraste uma poção de cura!");
 
                             int heroiHP = heroi.getHP();
-                            System.out.println("HP before potion: " +heroiHP);
+                            System.out.println("HP before potion: " + heroiHP);
                             heroi.adicionarPocaoHP(pocaoHP1);
                             heroi.setHP(heroi.getHP() + pocaoHP1.getCura());
                             int heroiHP2 = heroi.getHP();
-                            System.out.println("HP after potion: " +heroiHP2);
+                            System.out.println("HP after potion: " + heroiHP2);
                             heroi.removePocaoHP(pocaoHP1);
                             int heroiHP3 = heroi.getHP();
-                            System.out.println("HP after removing potion: " +heroiHP3);
+                            System.out.println("HP after removing potion: " + heroiHP3);
                             System.out.println("A poção de cura restaurou " + pocaoHP1.getCura() + " de HP.");
                         } else {
                             System.out.println("Decidiste não abrir!");
