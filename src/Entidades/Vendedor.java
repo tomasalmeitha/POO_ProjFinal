@@ -86,7 +86,9 @@ public class Vendedor {
                     if (heroi.getOuro() >= item.getPreco()) {
                         heroi.setOuro(heroi.getOuro() - item.getPreco());
                         heroi.setArma(arma);
+                        System.out.println();
                         System.out.println("Arma comprada: " + item.getNome());
+                        System.out.println("Ouro: " + heroi.getOuro());
                         System.out.println();
                         itens.remove(item);
 
@@ -102,7 +104,9 @@ public class Vendedor {
                 if (heroi.getOuro() >= item.getPreco()) {
                     heroi.setOuro(heroi.getOuro() - item.getPreco());
                     heroi.adicionarPocaoHP(pocaoHP);
+                    System.out.println();
                     System.out.println("Poção comprada: " + item.getNome());
+                    System.out.println("Ouro: " + heroi.getOuro());
                     System.out.println();
                     itens.remove(item);
                 } else {

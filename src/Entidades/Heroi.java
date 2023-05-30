@@ -58,7 +58,7 @@ public abstract class Heroi extends Entidade {
 
     public void adicionarPocaoHP(PocaoHP pocaoHP){
         this.pocoes.add(pocaoHP);
-        System.out.println("Item adicionado ao inventário: " +pocaoHP.getNome());
+//        System.out.println("Item adicionado ao inventário: " +pocaoHP.getNome());
     }
 
     /**
@@ -69,7 +69,7 @@ public abstract class Heroi extends Entidade {
 
     public void removePocaoHP(PocaoHP pocaoHP){
         this.pocoes.remove(pocaoHP);
-        System.out.println("Item retirado ao inventário: " +pocaoHP.getNome());
+//        System.out.println("Item retirado ao inventário: " +pocaoHP.getNome());
     }
 
     /**
@@ -93,20 +93,6 @@ public abstract class Heroi extends Entidade {
         this.nivel = nivel;
     }
 
-    /**
-     * Incrementa o nível do herói por 1 se este derrotar o NPC e retorna o novo nível.
-     *
-     * @return o novo nível do herói
-     * */
-
-    public int nivelUp(){
-        int nivelUp = this.nivel++;
-        System.out.println();
-        System.out.println("Subida de nível!");
-        System.out.println("Nível: " +this.getNivel());
-        System.out.println();
-        return nivelUp;
-    }
 
     /**
      * Devolve a quantidade de ouro que o herói possui.

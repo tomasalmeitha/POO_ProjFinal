@@ -48,10 +48,14 @@ public class Feiticeiro extends Heroi {
 
             //Herói ataca primeiro
             npc.setHP(npc.getHP() - danoHeroi);
-
+            //No caso do Feiticeiro vencer a batalha, sobe um nível, recebe 10 pontos de vida, 1 de força e 10 moedas de ouro
             if (npc.getHP() <= 0) {
                 System.out.println();
                 System.out.println("Feiticeiro derrotou o inimigo " + npc.getNome());
+                this.setNivel(this.getNivel()+1);
+                this.setHP(this.getHP()+10);
+                this.setForca(this.getForca()+1);
+                this.setOuro(this.getOuro()+10);
                 return true;
             }
 
@@ -80,13 +84,14 @@ public class Feiticeiro extends Heroi {
 
     @Override
     public void mostrarDetalhes() {
+        System.out.println();
         System.out.println("Detalhes do Feiticeiro:");
         System.out.println("Nome: " + getNome());
         System.out.println("HP: " + getHP());
         System.out.println("Força: " + getForca());
         System.out.println("Nível: " + getNivel());
         System.out.println("Ouro: " + getOuro());
-        System.out.println("Arma: " + getArma().getNome());
-        System.out.println("Poções: " + getPocoes().size());
+//        System.out.println("Arma: " + getArma().getNome());
+//        System.out.println("Poções: " + getPocoes().size());
     }
 }
